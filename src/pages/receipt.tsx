@@ -3,7 +3,7 @@ import { PDFDownloadLink, PDFViewer, Font } from '@react-pdf/renderer'
 import * as pdfjsLib from 'pdfjs-dist'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import Layout from '../components/Layout'
+import Layout from '@/components/Layout'
 import SignatureCanvas from 'react-signature-canvas'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select'
@@ -16,7 +16,7 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card'
-import GothamNarrowMedium from '/fonts/GothamNarrow-Medium.otf'
+import GothamNarrowMedium from '@/fonts/GothamNarrow-Medium.otf'
 import { fetchActas, insert } from '@/connections/querys'
 import {
   Dialog,
@@ -30,7 +30,7 @@ import {
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 
-import { formInitial } from '../components/pdfComponents/format'
+import { formInitial } from '@/components/pdfComponents/format'
 
 import ActaPDF from '../components/pdfComponents/pdfView'
 import DownloadPDF from '@/components/pdfComponents/PdfDownload'
@@ -42,7 +42,7 @@ Font.register({
   src: GothamNarrowMedium
 })
 
-export const ActaDeLlegada = (): JSX.Element => {
+const ActaDeLlegada = (): JSX.Element => {
   interface FormData {
     id: number | null
     fecha: string
@@ -1381,20 +1381,22 @@ export const ActaDeLlegada = (): JSX.Element => {
         <Button onClick={() => { void handleInsert() }}>Guardar datos en la Bd</Button>
 
         <div style={{ padding: '10px', display: 'flex', justifyContent: 'center' }}>
-          {firmaBase64Inspector && firmaBase64Chofer ? (
-            <PDFDownloadLink
-              document={<DownloadPDF
-                formData={formData}
-                firmaBase64Inspector={firmaBase64Inspector}
-                firmaBase64Chofer={firmaBase64Chofer}
+          {firmaBase64Inspector && firmaBase64Chofer
+            ? (
+              <PDFDownloadLink
+                document={<DownloadPDF
+      formData={formData}
+      firmaBase64Inspector={firmaBase64Inspector}
+      firmaBase64Chofer={firmaBase64Chofer}
               />}
-              fileName={`Acta_${formData.oc}.pdf`}
-            >
-              <Button variant='default'>Descargar PDF</Button>
-            </PDFDownloadLink>
-          ) : (
-            <Button variant='default' disabled>Faltan firmas</Button>
-          )}
+                fileName={`Acta_${formData.oc}.pdf`}
+              >
+                <Button variant='default'>Descargar PDF</Button>
+              </PDFDownloadLink>
+              )
+            : (
+              <Button variant='default' disabled>Faltan firmas</Button>
+              )}
         </div>
       </div>
       <Dialog>
