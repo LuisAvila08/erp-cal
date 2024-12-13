@@ -42,7 +42,7 @@ Font.register({
   src: GothamNarrowMedium
 })
 
-const ActaDeLlegada = (): JSX.Element => {
+export const ActaDeLlegada = (): JSX.Element => {
   interface FormData {
     id: number | null
     fecha: string
