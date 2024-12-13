@@ -1,5 +1,6 @@
 {
-  "name": "frontend-scrum",
+  "name": "erp-cal",
+  "homepage": "https://LuisAvila08.github.io/erp-cal/",
   "private": true,
   "version": "0.0.0",
   "proxy": "http://localhost:5000",
@@ -8,9 +9,12 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "gh-pages": "^6.2.0",
     "@emotion/react": "^11.13.5",
     "@emotion/styled": "^11.13.5",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
